@@ -8,7 +8,56 @@
 
 <body>
 	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+    <img>
+	<h1></h1>
+	<section></section>
+	<button id="age">Age</button>
+	<button id="email">Email</button>
+	<button id="phone">Phone</button>
+	<div><button id="get">GET ANOTHER USER</button></div>
+	
+    <script>
+        let img = document.querySelector('img');
+        let h1 = document.querySelector('h1');
+let section = document.querySelector('section');
+let age_btn = document.querySelector('#age');
+let email_btn = document.querySelector('#email');
+let phone_btn = document.querySelector('#phone');
+let get_btn = document.querySelector('#get');
+
+let section_text,age_text,email_text,phone_text;
+function onload(){
+fetch("https://randomuser.me/api/")
+    .then(res=>res.json())
+    .then(data=>{
+        let [obj] = data.results;
+        console.log(obj);
+        img.src = obj.picture.large;
+        h1.innerText = `${obj.name.first} ${obj.name.last}`;
+        age_text = obj.dob.age;
+        email_text = obj.email;
+        phone_text = obj.phone;
+        section.innerText = '';
+    })
+}
+
+age_btn.addEventListener("click",(e)=>{
+            section.innerText = age_text;
+        });
+email_btn.addEventListener("click",(e)=>{
+            section.innerText = email_text;
+        });
+phone_btn.addEventListener("click",(e)=>{
+            section.innerText = phone_text;
+        });
+get_btn.addEventListener("click",(e)=>{
+            onload();
+        });
+
+onload();
+
+
+
 </script>
 
 </body>
